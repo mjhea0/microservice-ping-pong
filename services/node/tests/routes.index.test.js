@@ -23,13 +23,15 @@ describe('routes : index', () => {
     });
   });
 
-  describe('GET /meow01', () => {
-    it('should return "pong"', () => {
+  describe('GET /ping', () => {
+    it('should return "pong"', (done) => {
       chai.request(server)
-      .get('/meow01')
+      .get('/ping')
       .end((err, res) => {
-        res.type.should.eql('text/html');
-        res.text.should.eql('pong');
+        res.status.should.equal(200);
+        res.type.should.equal('text/html');
+        res.text.should.equal('pong');
+        done();
       });
     });
   });

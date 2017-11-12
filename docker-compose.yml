@@ -1,0 +1,74 @@
+version: '3.3'
+
+services:
+
+  node-john:
+    container_name: node-john
+    build:
+      context: ./services/node
+      dockerfile: Dockerfile
+    image: node-base
+    ports:
+      - '3003:3000'
+    environment:
+      - NODE_ENV=development
+    links:
+      - node-paul
+      - node-george
+      - node-ringo
+
+  node-paul:
+    container_name: node-paul
+    image: node-base
+    ports:
+      - '3004:3000'
+    environment:
+      - NODE_ENV=development
+
+  node-george:
+    container_name: node-george
+    image: node-base
+    ports:
+      - '3005:3000'
+    environment:
+      - NODE_ENV=development
+
+  node-ringo:
+    container_name: node-ringo
+    image: node-base
+    ports:
+      - '3006:3000'
+    environment:
+      - NODE_ENV=development
+
+  client:
+    container_name: node-client
+    build:
+      context: ./services/client
+      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=development
+        - REACT_APP_BASE_URL=${REACT_APP_BASE_URL}
+    ports:
+      - '3008:3000'
+    depends_on:
+      - node-john
+      - node-paul
+      - node-george
+      - node-ringo
+    links:
+      - node-john
+      - node-paul
+      - node-george
+      - node-ringo
+
+  nginx:
+    container_name: node-nginx
+    build: ./services/nginx
+    ports:
+      - 80:80
+    depends_on:
+      - client
+    links:
+      - node-john
+      - client

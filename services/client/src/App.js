@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 // Material-UI
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 
 // Theme
 import { deepOrange500 } from 'material-ui/styles/colors';
@@ -12,7 +12,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 const styles = {
   container: {
     textAlign: 'center',
-    paddingTop: 200
+    paddingTop: 100
   }
 };
 
@@ -32,28 +32,52 @@ class App extends Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
-          <RaisedButton
+          <FlatButton
             onClick={() => this.handleClick()}
             label='P'
             backgroundColor='#C8E6C9'
           />
           &nbsp;
-          <RaisedButton
+          <FlatButton
             onClick={() => this.handleClick()}
             label='I'
             backgroundColor='#BBDEFB'
           />
           &nbsp;
-          <RaisedButton
+          <FlatButton
             onClick={() => this.handleClick()}
             label='N'
             backgroundColor='#ffcdd2'
           />
           &nbsp;
-          <RaisedButton
+          <FlatButton
             onClick={() => this.handleClick()}
             label='G'
             backgroundColor='#E1BEE7'
+          />
+          <br/><br/>
+          <FlatButton
+            onClick={() => this.handleClick()}
+            label='P'
+            backgroundColor='#BBDEFB'
+          />
+          &nbsp;
+          <FlatButton
+            onClick={() => this.handleClick()}
+            label='O'
+            backgroundColor='#C8E6C9'
+          />
+          &nbsp;
+          <FlatButton
+            onClick={() => this.handleClick()}
+            label='N'
+            backgroundColor='#E1BEE7'
+          />
+          &nbsp;
+          <FlatButton
+            onClick={() => this.handleClick()}
+            label='G'
+            backgroundColor='#ffcdd2'
           />
         </div>
       </MuiThemeProvider>

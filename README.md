@@ -15,14 +15,27 @@
     Docker version 17.09.0-ce, build afdb6d4
     ```
 
-1. Set the Environment variables:
+1. Set the environment variables:
 
     ```sh
     $ export REACT_APP_BASE_URL=http://DOCKER_MACHINE_IP
     ```
 
-1. Fire up the Containers
+1. Build and tag the `node-base` image:
 
     ```sh
-    $ docker-compose -f docker-compose-dev.yml up -d --build
+    $ docker build -t node-base ./services/node
+    ```
+
+1. Fire up the containers
+
+    ```sh
+    $ docker-compose up -d --build
+    ```
+
+1. Lint and test:
+
+    ```sh
+    $ docker-compose run node-john gulp lint
+    $ docker-compose run node-john npm test
     ```
