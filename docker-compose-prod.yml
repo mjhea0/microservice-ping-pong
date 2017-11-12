@@ -1,0 +1,74 @@
+version: '3.3'
+
+services:
+
+  meow-john:
+    container_name: meow-john
+    build:
+      context: ./services/meow
+      dockerfile: Dockerfile-prod
+    ports:
+      - '3003:3000'
+
+  meow-paul:
+    container_name: meow-paul
+    build:
+      context: ./services/meow
+      dockerfile: Dockerfile-prod
+    ports:
+      - '3004:3000'
+
+  meow-george:
+    container_name: meow-george
+    build:
+      context: ./services/meow
+      dockerfile: Dockerfile-prod
+    ports:
+      - '3005:3000'
+
+  meow-ringo:
+    container_name: meow-ringo
+    build:
+      context: ./services/meow
+      dockerfile: Dockerfile-prod
+    ports:
+      - '3006:3000'
+
+  client:
+    container_name: meow-client
+    build:
+      context: ./services/client
+      dockerfile: Dockerfile-prod
+      args:
+        - NODE_ENV=development
+        - REACT_APP_BASE_URL=${REACT_APP_BASE_URL}
+    ports:
+      - '3008:3000'
+    depends_on:
+      - meow-john
+      - meow-paul
+      - meow-george
+      - meow-ringo
+    links:
+      - meow-john
+      - meow-paul
+      - meow-george
+      - meow-ringo
+
+  nginx:
+    container_name: meow-nginx
+    build: ./services/nginx
+    ports:
+      - 82:80
+    depends_on:
+      - meow-john
+      - meow-paul
+      - meow-george
+      - meow-ringo
+      - client
+    links:
+      - meow-john
+      - meow-paul
+      - meow-george
+      - meow-ringo
+      - client
