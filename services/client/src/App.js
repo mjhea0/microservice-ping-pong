@@ -13,6 +13,10 @@ const styles = {
   container: {
     textAlign: 'center',
     paddingTop: 100
+  },
+  img: {
+    paddingTop: 50,
+    maxWidth: 125
   }
 };
 
@@ -79,6 +83,7 @@ class App extends Component {
             label='G'
             backgroundColor='#ffcdd2'
           />
+        <p><img src="beatles.png" alt="beatles" style={styles.img}/></p>
         </div>
       </MuiThemeProvider>
     )
