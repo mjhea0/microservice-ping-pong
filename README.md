@@ -1,8 +1,12 @@
 # Microservice Ping Pong
 
-![](./ping.png)
+http://mherman.org/presentations/microservice-ping-pong
 
-## Getting Started
+## Want to learn how to build this project?
+
+Check out the [blog post](http://mherman.org/blog/2017/11/16/docker-on-aws-from-containerization-to-orchestration).
+
+## Want to use this project?
 
 1. Fork/Clone this repo
 
@@ -39,3 +43,5 @@
     $ docker-compose run node-john gulp lint
     $ docker-compose run node-john npm test
     ```
+
+![](./ping.png)
